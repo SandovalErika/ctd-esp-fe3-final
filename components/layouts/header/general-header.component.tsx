@@ -36,8 +36,8 @@ const Header: FC<Props> = ({variant}: Props) => {
 
 
 const GeneralHeader: FC<Props> = ({variant}: Props) => {
-    return variant == 'general' ?
-        <AppBar position="static">
+    return variant == 'general' ? 
+        <AppBar position="sticky" sx={{ background: 'red' }}>
             <Header variant={variant}/>
         </AppBar> : <Header variant={variant}/>
         ;
