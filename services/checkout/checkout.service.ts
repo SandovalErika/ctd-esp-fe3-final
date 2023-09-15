@@ -1,6 +1,7 @@
 import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
 
-const url = process.env.API_ROUTE;
+const url = "https://ctd-esp-fe3-final-git-main-sandovalerika.vercel.app/api/checkout"
+// const url2 = "http://localhost:3000/api/checkout"
 
 export const postCheckOut = async (data: CheckoutInput) => {
     const options = {
@@ -9,7 +10,7 @@ export const postCheckOut = async (data: CheckoutInput) => {
         body: JSON.stringify(data)
     };
 
-    const req = await fetch(`http://localhost:3000/api/checkout`, options)
+    const req = await fetch(`url`, options)
     const res = await req.json()
 
     return res;
