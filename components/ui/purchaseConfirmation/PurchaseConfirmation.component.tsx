@@ -15,19 +15,73 @@ import {
   TEXT_PURCHASE,
   TITLE_STEPPER,
 } from "utils/constant";
+import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
 
 interface PropsConfirmation {
   handleClickGoHome: () => void;
 }
 
+interface SavedData {
+  customer: {
+    name: "";
+    lastname: "";
+    email: "";
+    address: {
+      address1: "";
+      address2: "";
+      city: "";
+      state: "";
+      zipCode: "";
+    };
+  };
+
+  card: {
+    number: "";
+    cvc: "";
+    expDate: "";
+    nameOnCard: "";
+  };
+  order?: {
+    name?: string;
+    image?: string;
+    price?: number;
+  };
+}
+
 const PurchaseConfirmation: React.FC<PropsConfirmation> = ({
   handleClickGoHome,
 }) => {
+  const [savedData, setSavedData] = React.useState<SavedData>({
+    order: {
+      name: "",
+      image: "",
+      price: 0,
+    },
+    customer: {
+      name: "",
+      lastname: "",
+      email: "",
+      address: {
+        address1: "",
+        address2: "",
+        city: "",
+        state: "",
+        zipCode: "",
+      },
+    },
+    card: {
+      number: "",
+      cvc: "",
+      expDate: "",
+      nameOnCard: "",
+    },
+  });
+
   useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("checkoutData") || "{}");
+    setSavedData(data);
     localStorage.removeItem("checkoutData");
   }, []);
-
-  const savedData = JSON.parse(localStorage.getItem("checkoutData") || "{}");
 
   const styles = {
     display: "flex",
@@ -72,7 +126,7 @@ const PurchaseConfirmation: React.FC<PropsConfirmation> = ({
             component="img"
             alt={savedData?.order?.name}
             height="250"
-            image={savedData?.order?.image}
+            image={savedData && savedData?.order?.image}
             title={savedData?.order?.name}
             sx={{
               borderRadius: "10px",
