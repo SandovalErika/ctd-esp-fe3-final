@@ -10,7 +10,7 @@ export const postCheckOut = async (data: CheckoutInput) => {
         body: JSON.stringify(data)
     };
 
-    const req = await fetch(`url`, options)
+    const req = await fetch(`/api/checkout`, options)
     const res = await req.json()
 
     return res;
