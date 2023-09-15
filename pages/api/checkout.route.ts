@@ -29,8 +29,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
         res.status(405).json(ERROR_METHOD_NOT_ALLOWED);
         return;
     }
+    
     try {
         const body: CheckoutInput = req.body;
+    
+        
         if (body.customer.address.address2 === invalidAddress) {
             res.status(400).json(ERROR_INCORRECT_ADDRESS);
             return

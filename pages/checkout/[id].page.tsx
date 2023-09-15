@@ -1,23 +1,24 @@
 import LayoutCheckout from 'dh-marvel/components/layouts/layout-checkout'
-import { Comics, Result } from '../../interface/comic'
+import { Result } from '../../interface/comic'
 import { getComic, getComics } from 'dh-marvel/services/marvel/marvel.service'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import React from 'react'
 import Box from '@mui/material/Box';
 import HorizontalLinearStepper from '../../components/ui/stepper/stepper.component'
 import ComicCard from 'dh-marvel/components/ui/comicCard/ComicCard.component'
-import LayoutGeneral from 'dh-marvel/components/layouts/layout-general'
 
 interface Props {
     result: Result
 }
 
 const CheckOut: NextPage<Props> = ({ result }) => {
+
+
     return (
             <LayoutCheckout title={'Checkout'}>
             <Box sx={{ width: "100%", display: "flex", alignContent: "center", justifyContent: "center" }}>
                 <ComicCard result={result} />
-                <HorizontalLinearStepper />
+                <HorizontalLinearStepper result={result} />
             </Box>
             </LayoutCheckout>
     )
