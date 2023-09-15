@@ -1,18 +1,50 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 
-type CheckoutContextType = {
-  data: any;
-  setData: React.Dispatch<React.SetStateAction<any>>;
-  handlerCustomer: (data: any) => void;
-  handlerAddress: (data: any) => void;
-  handlerCard: (data: any) => void;
+type AddressType = {
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zipCode: string;
 };
 
-type CheckoutProviderProps = {
-    children: React.ReactNode;
-  };
+type CustomerType = {
+    name: string;
+    lastname: string;
+    email: string;
+    address: AddressType;
+};
 
-  const defaultValues = {
+type CardType = {
+    number: string;
+    cvc: string;
+    expDate: string;
+    nameOnCard: string;
+};
+
+type OrderType = {
+    name: string;
+    image: string;
+    price: number;
+};
+
+type CheckoutContextType = {
+  data: {
+    customer: CustomerType;
+    card: CardType;
+    order: OrderType;
+  };
+  setData: React.Dispatch<React.SetStateAction<typeof defaultValues>>;
+  handlerCustomer: (data: Partial<CustomerType>) => void;
+  handlerAddress: (data: AddressType) => void;
+  handlerCard: (data: CardType) => void;
+};
+
+interface CheckoutProviderProps {
+    children: ReactNode;
+}
+
+const defaultValues = {
     customer: {
         name: "",
         lastname: "",
@@ -41,29 +73,23 @@ type CheckoutProviderProps = {
 export const CheckoutContext = createContext<CheckoutContextType | undefined>(undefined);
 
 export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({ children }) => {
-   
-  
     const [data, setData] = useState(defaultValues);
-   
-  
-    const handlerCustomer = (data: any) => {
-        setData(prevData => ({ ...prevData, customer: {...prevData.customer, ...data} }));
+
+    const handlerCustomer = (customerData: Partial<CustomerType>) => {
+        setData(prevData => ({ ...prevData, customer: {...prevData.customer, ...customerData} }));
     };
-  
-    const handlerAddress = (data: any) => {
-        setData(prevData => ({ ...prevData, customer: { ...prevData.customer, address: data } }));
+
+    const handlerAddress = (addressData: AddressType) => {
+        setData(prevData => ({ ...prevData, customer: { ...prevData.customer, address: addressData } }));
     };
-  
-  
-    const handlerCard = (data: any) => {
-        console.log("Data received in handlerCard:", data);
-      setData(prevData => ({ ...prevData, card: data }));
+
+    const handlerCard = (cardData: CardType) => {
+        setData(prevData => ({ ...prevData, card: cardData }));
     };
-    
-  
+
     return (
       <CheckoutContext.Provider value={{ data, setData, handlerCustomer, handlerAddress, handlerCard }}>
         {children}
       </CheckoutContext.Provider>
     );
-  };
+};

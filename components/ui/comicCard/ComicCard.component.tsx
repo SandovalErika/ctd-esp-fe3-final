@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Result } from '../../../interface/comic';
-import { Button, CardActions, CardContent, Typography, Card, Box } from '@mui/material';
+import { Button, CardActions, CardContent, Typography, Card } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Spinner from '../spinner/Spinner.component';
@@ -8,10 +8,9 @@ import { TEXT_BUTTON } from 'utils/constant';
 
 interface Props {
     result: Result;
-    page?: number;
 }
 
-const ComicCard: FC<Props> = ({ result, page }) => {
+const ComicCard: FC<Props> = ({ result }) => {
     const router = useRouter();
     const { thumbnail, title, id, stock } = result;
 

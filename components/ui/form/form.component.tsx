@@ -1,32 +1,38 @@
-import React, { FC, useContext } from 'react'
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import React, { FC } from 'react';
+import { Box, Paper, Button } from "@mui/material";
 import { Result } from '../../../interface/comic';
 import PersonalData from './PersonalData';
 import DirectionData from './DirectionData.component';
-import PaymentData from './PaymentData.component';;
-
+import PaymentData from './PaymentData.component';
 
 interface Props {
-    activeStep: number
-    result: Result
-    handleBack: () => void
-    handleNext: () => void
+    activeStep: number;
+    result: Result;
+    handleBack: () => void;
+    handleNext: () => void;
 }
 
-
 const Form: FC<Props> = ({ result, activeStep, handleBack, handleNext }) => {
+    const renderStepContent = (step: number) => {
+        switch (step) {
+            case 0:
+                return <PersonalData handleNext={handleNext} />;
+            case 1:
+                return <DirectionData handleNext={handleNext} />;
+            case 2:
+                return <PaymentData result={result} />;
+            default:
+                throw new Error("Paso no válido");
+        }
+    };
 
     return (
         <Box sx={{ width: "80%", alignSelf: "center", marginTop: "2rem" }}>
             <Paper elevation={8} sx={{ p: "32px", display: "flex", flexDirection: "column", gap: 3 }}>
-                {activeStep === 0 && <PersonalData handleNext={handleNext}/>}
-                    {activeStep === 1 && <DirectionData  handleNext={handleNext} />}
-                    {activeStep === 2 && <PaymentData  handleNext={handleNext} result={result}/>}
+                {renderStepContent(activeStep)}
             </Paper>
         </Box>
-    )
+    );
 }
 
-export default Form
+export default Form;

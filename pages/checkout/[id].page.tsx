@@ -1,54 +1,60 @@
-import LayoutCheckout from 'dh-marvel/components/layouts/layout-checkout'
-import { Result } from '../../interface/comic'
-import { getComic, getComics } from 'dh-marvel/services/marvel/marvel.service'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import React from 'react'
-import Box from '@mui/material/Box';
-import HorizontalLinearStepper from '../../components/ui/stepper/stepper.component'
-import ComicCard from 'dh-marvel/components/ui/comicCard/ComicCard.component'
+import LayoutCheckout from "dh-marvel/components/layouts/layout-checkout";
+import { Result } from "../../interface/comic";
+import { getComic, getComics } from "dh-marvel/services/marvel/marvel.service";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import React from "react";
+import Box from "@mui/material/Box";
+import HorizontalLinearStepper from "../../components/ui/stepper/stepper.component";
+import ComicCard from "dh-marvel/components/ui/comicCard/ComicCard.component";
 
 interface Props {
-    result: Result
+  result: Result;
 }
 
 const CheckOut: NextPage<Props> = ({ result }) => {
-
-
-    return (
-            <LayoutCheckout title={'Checkout'}>
-            <Box sx={{ width: "100%", display: "flex", alignContent: "center", justifyContent: "center" }}>
-                <ComicCard result={result} />
-                <HorizontalLinearStepper result={result} />
-            </Box>
-            </LayoutCheckout>
-    )
-}
+  if (!result) {
+    return <LayoutCheckout title="Cargando">Cargando...</LayoutCheckout>;
+  }
+  return (
+    <LayoutCheckout title={"Checkout"}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "center",
+        }}
+      >
+        <ComicCard result={result} />
+        <HorizontalLinearStepper result={result} />
+      </Box>
+    </LayoutCheckout>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const comics = await getComics(undefined, 12);
+  const comics = await getComics(0, 12);
 
-    const paths = comics.data.results?.map((comic: Result) => ({
-        params: { id: comic.id.toString() },
-    }));
+  const paths = comics.data.results?.map((comic: Result) => ({
+    params: { id: comic.id.toString() },
+  }));
 
-
-    return {
-        paths,
-        fallback: false,
-    };
+  return {
+    paths,
+    fallback: "blocking",
+  };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = Number(params?.id);
 
-    const id = Number(params?.id);
+  const character = await getComic(id);
 
-    const character = await getComic(id)
+  return {
+    props: {
+      result: character,
+    },
+  };
+};
 
-    return {
-        props: {
-            result: character
-        }
-    }
-}
-
-export default CheckOut
+export default CheckOut;
