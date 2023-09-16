@@ -101,19 +101,26 @@ const ComicPage: NextPage<Props> = ({ result }) => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul>
-                      {result?.characters.items?.map((character) => {
-                        return (
-                          <li key={character.name}>
-                            <Link
-                              href={`/personajes/${idCharacter(
-                                character.resourceURI
-                              )}`}
-                            >
-                              {character.name}
-                            </Link>
-                          </li>
-                        );
-                      })}
+                      { result.characters.items && result.characters.items.length > 0 ? (
+                        result?.characters.items?.map((character) => {
+                          return (
+                            <li key={character.name}>
+                              <Link
+                                href={`/personajes/${idCharacter(
+                                  character.resourceURI
+                                )}`}
+                              >
+                                {character.name}
+                              </Link>
+                            </li>
+                          );
+                        })
+                      ) :  <Typography gutterBottom variant="body1" fontWeight="bold" margin="1px">
+                      {"No hay personajes asociados"}
+                    </Typography>
+                        
+                      }
+                    
                     </ul>
                   </AccordionDetails>
                 </Accordion>

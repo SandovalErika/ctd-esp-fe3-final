@@ -26,7 +26,7 @@ export enum TITLE_STEPPER {
 }
 
 export enum TEXT_PURCHASE {
-    PURCHASE_CONFIRMATION = "¡Tu compra se realizo con exito!",
+    PURCHASE_CONFIRMATION = "Que disfrutes tu compra!",
 }
 
 export const REGEX = {

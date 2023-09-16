@@ -6,7 +6,11 @@ import { Button, Typography } from "@mui/material";
 import { CustomTextField } from "./customInput/CustomTextField";
 import { CheckoutContext } from "./context/FormContext";
 import { schemaAddress } from "rules";
-import { TEXT_BUTTON, TEXT_INFORMATION_COMIC, TITLE_STEPPER } from "utils/constant";
+import {
+  TEXT_BUTTON,
+  TEXT_INFORMATION_COMIC,
+  TITLE_STEPPER,
+} from "utils/constant";
 
 interface Props {
   handleNext: () => void;
@@ -86,15 +90,22 @@ const DirectionData: FC<Props> = ({ handleNext }) => {
         </Typography>
 
         {fields.map((field) => (
-          <CustomTextField
-            key={field.name}
-            name={field.name}
-            label={field.label}
-            type={field.type}
-            control={control}
-            defaultValue={field.defaultValue}
-            required={field.required}
-          />
+          <div key={field.name}>
+            <CustomTextField
+              key={field.name}
+              name={field.name}
+              label={field.label}
+              type={field.type}
+              control={control}
+              defaultValue={field.defaultValue}
+              required={field.required}
+            />
+            {errors[field.name as keyof typeof errors] && (
+              <Typography variant="caption" color="red">
+                {errors[field.name as keyof typeof errors]?.message}
+              </Typography>
+            )}
+          </div>
         ))}
 
         <Button variant="contained" type="submit">

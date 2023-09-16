@@ -31,7 +31,7 @@ const ComicCard: FC<Props> = ({ result }) => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             backgroundColor: theme => theme.palette.grey[300],
-            boxShadow:'0px 4px 6px rgba(0, 0, 0, 1.1)'
+            boxShadow:'0px 4px 6px rgba(0, 0, 0, 0.5)'
         }}>
             <Image
                 width={250}

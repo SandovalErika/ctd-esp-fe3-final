@@ -54,6 +54,14 @@ const PersonajePage: NextPage<Props> = ({ character }) => {
               width={300}
               height={300}
             />
+             <Typography
+              variant="body1"
+              component="div"
+              align="center"
+              sx={{ marginTop: 2, marginBottom: 2 }}
+            >
+              {character.description || "Descripción no disponible."}
+            </Typography>
             <Button
               size="medium"
               variant="outlined"
