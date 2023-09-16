@@ -1,50 +1,20 @@
 import React from 'react'
 import { NextPage, GetStaticProps, } from 'next'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Container } from '@mui/material';
-import Head from 'next/head';
 import { FaqsType } from 'dh-marvel/components/faqs/faqsData';
+import LayoutGeneral from 'dh-marvel/components/layouts/layout-general';
+import Faqs from 'dh-marvel/components/faqs/Faqs';
 
-interface Props{
-    faqs: any[]
-}
+interface Props {
+    faqs: FaqsType[];
+  }
 
-const FaqsPage: NextPage<Props> = ({ faqs }) => {
+const faqsPage: NextPage<Props> = ({ faqs }) => {
     return (
-        <>
-            <Head>
-                <title>FAQs</title>
-                <meta name="description" content="All the frequency questions"/>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
-
-            <Container>
-                <h1>Freguntas Frecuentes</h1>
-            {faqs.map(faq => {
-                return (
-                    <Accordion key={faq.id}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography>{faq.question}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                {faq.answer}
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>)
-            })}
-        </Container>
-        </>
-    )
-}
+      <LayoutGeneral title={'FAQ'}>
+        <Faqs faqs={faqs} />
+      </LayoutGeneral>
+    );
+  };
 
 export const getStaticProps: GetStaticProps = async () => {
 
@@ -62,4 +32,4 @@ export const getStaticProps: GetStaticProps = async () => {
 
 }
 
-export default FaqsPage
+export default faqsPage

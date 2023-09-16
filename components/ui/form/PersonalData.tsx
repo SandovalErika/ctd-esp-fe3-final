@@ -3,10 +3,10 @@ import { Typography, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CustomTextField } from "./customInput/CustomTextField";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaCustomer } from "rules";
+import { schemaCustomer } from "../../../rules";
 import { DevTool } from "@hookform/devtools";
 import { CheckoutContext } from "./context/FormContext";
-import { TITLE_STEPPER } from "utils/constant";
+import { TITLE_STEPPER } from "../../../utils/constant";
 
 interface Props {
   handleNext: () => void;

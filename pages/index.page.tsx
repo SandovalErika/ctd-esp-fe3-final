@@ -7,7 +7,7 @@ import { Box, Grid, Pagination } from '@mui/material';
 import ComicCard from 'dh-marvel/components/ui/comicCard/ComicCard.component';
 import { getComics } from 'dh-marvel/services/marvel/marvel.service';
 import { useRouter } from 'next/router';
-import countComics from 'utils/generalFunctions';
+import countComics from '../utils/generalFunctions';
 
 interface Props {
     comics?: Comics

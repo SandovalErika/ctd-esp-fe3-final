@@ -4,7 +4,7 @@ import { Button, CardActions, CardContent, Typography, Card } from '@mui/materia
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Spinner from '../spinner/Spinner.component';
-import { TEXT_BUTTON } from 'utils/constant';
+import { TEXT_BUTTON } from '../../../utils/constant';
 
 interface Props {
     result: Result;

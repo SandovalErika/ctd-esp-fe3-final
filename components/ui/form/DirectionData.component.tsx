@@ -5,12 +5,11 @@ import { DevTool } from "@hookform/devtools";
 import { Button, Typography } from "@mui/material";
 import { CustomTextField } from "./customInput/CustomTextField";
 import { CheckoutContext } from "./context/FormContext";
-import { schemaAddress } from "rules";
+import { schemaAddress } from "../../../rules";
 import {
   TEXT_BUTTON,
-  TEXT_INFORMATION_COMIC,
   TITLE_STEPPER,
-} from "utils/constant";
+} from "../../../utils/constant";
 
 interface Props {
   handleNext: () => void;

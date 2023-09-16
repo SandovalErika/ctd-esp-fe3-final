@@ -2,12 +2,13 @@ import React, { FC, useContext, useState, useEffect, useCallback } from "react";
 import { Typography, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CustomTextField } from "./customInput/CustomTextField";
-import { schemaCard } from "rules";
+import { schemaCard } from "../../../rules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CheckoutContext } from "./context/FormContext";
 import { postCheckOut } from "dh-marvel/services/checkout/checkout.service";
 import { useRouter } from "next/router";
 import { DevTool } from "@hookform/devtools";
+import { TEXT_BUTTON, TITLE_STEPPER } from "../../../utils/constant";
 
 interface Props {
   result: any;
@@ -108,7 +109,7 @@ const PaymentData: FC<Props> = ({ result }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Typography sx={{ paddingBottom: "1rem" }} variant="h4" align="center">
-          Datos del Pago
+          {TITLE_STEPPER.DATOS_DEL_PAGO}
         </Typography>
 
         {paymentFields.map((field) => (
@@ -131,7 +132,7 @@ const PaymentData: FC<Props> = ({ result }) => {
 
         <Button variant="contained" type="submit">
           {" "}
-          Siguiente
+          {TEXT_BUTTON.COMPRAR}
         </Button>
       </form>
       <DevTool control={control} />

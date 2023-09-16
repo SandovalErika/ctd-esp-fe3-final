@@ -14,7 +14,7 @@ import {
   TEXT_INFORMATION_COMIC,
   TEXT_PURCHASE,
   TITLE_STEPPER,
-} from "utils/constant";
+} from "../../../utils/constant";
 import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
 
 interface PropsConfirmation {

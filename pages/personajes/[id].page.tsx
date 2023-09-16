@@ -6,7 +6,7 @@ import { Box, Button, Card, Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
 import router from "next/router";
-import { TEXT_BUTTON } from "utils/constant";
+import { TEXT_BUTTON } from "../../utils/constant";
 
 interface Props {
   character: Character;

@@ -16,8 +16,7 @@ import ComicCard from "dh-marvel/components/ui/comicCard/ComicCard.component";
 import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import { Result } from "../../interface/comic";
 import { getComic, getComics } from "dh-marvel/services/marvel/marvel.service";
-import { TEXT_INFORMATION_CARD, TEXT_INFORMATION_COMIC } from "utils/constant";
-import {REGEX} from '../../utils/constant'
+import {REGEX, TEXT_INFORMATION_CARD, TEXT_INFORMATION_COMIC} from '../../utils/constant'
 
 interface Props {
   result: Result;
