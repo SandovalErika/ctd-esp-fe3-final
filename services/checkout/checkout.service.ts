@@ -1,6 +1,6 @@
 import { CheckoutInput } from "dh-marvel/features/checkout/checkout.types";
 
-// const url = "http://localhost:3001/api/checkout"
+// const url = "http://localhost:3000/api/checkout"
 
 export const postCheckOut = async (data: CheckoutInput) => {
     const options = {
@@ -9,7 +9,7 @@ export const postCheckOut = async (data: CheckoutInput) => {
         body: JSON.stringify(data)
     };
 
-    const req = await fetch(`url`, options)
+    const req = await fetch(`/api/checkout`, options)
     const res = await req.json()
 
     return res;
